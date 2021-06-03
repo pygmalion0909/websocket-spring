@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html
+	lang="ko"
+	layout:decorator="layouts/mainLayout" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+	<head> 
+		<meta charset="UTF-8"> 
+	</head>
+	<div layout:fragment="contents">
+		<div class="contents-frame">
+			<div class="talk-frame">
+				<div class="talk_title">
+					<h1 th:text="${channelInfo.title}"></h1>
+				</div>
+				<div id="scrollDown" class="tlak-contents">
+					<ul id="tlakListBox" class="tlak_contents-ul">
+						<li class="tlak_contents-li" th:each="item : ${list}">
+							<!-- 상대방 -->
+							<div class="tlak_contents_div others" th:if="${item.userId} != ${userInfo.id}">
+								<p class="tlak_contents-p others userName" th:text="${item.loginId}"></p>
+								<p class="tlak_contents-p others content" th:text="${item.content}"></p>
+								<p class="tlak_contents-p others createDate" th:text="${item.createDate}"></p> 
+							</div>
+							<!-- 나 -->							
+							<div class="tlak_contents_div me" th:if="${item.userId} == ${userInfo.id}">
+								<p class="tlak_contents-p me content" th:text="${item.content}"></p>
+								<p class="tlak_contents-p me createDate" th:text="${item.createDate}"></p>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="talk-talkSay">
+					<input id="talkSay" class="talk-talkSay_input" name="content" type="text" maxlength="100" placeholder="대화를 입력 해주세요.">
+					<button onclick="send()" id="insertBtn" class="talk-talkSay_btn">전송</button>
+				</div>
+				<div class="talk_subMenu">
+					<label class="talk_file_label" for="talkFile">파일</label>
+					<input type="file" id="talkFile" class="talk_subMenu_file" accept="image/*">
+				</div>
+			</div>
+			<div class="talk-nav">
+				<a class="talk-backBtn" href="/channelPage">Back</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			const userId = "[[${userInfo.id}]]";
+			
+			//스크롤 맨아래로 셋팅
+			function setScrollDown() {
+				$("#scrollDown").scrollTop($("#scrollDown")[0].scrollHeight);
+			}
+			setScrollDown();
+			
+			//websocket주소 설정
+			var ws = new WebSocket("ws://" + location.host + "/chating/"+"[[${channelInfo.id}]]");
+			console.log("===ws===", ws);
+			
+			//소켓이 열리면 초기화 세팅하기
+			ws.onopen = function(data){
+	 			//alert("환영합니다.");
+			}
+			
+			ws.onmessage = function(data) {
+				const payload = JSON.parse(data.data);
+				console.log("소켓메세지 전달 data payload", payload);
+				
+				if(userId === payload.userId) {
+					$("#tlakListBox").append(
+	 						`
+	 						<li class="tlak_contents-li">
+		 						<div class='tlak_contents_div me'>
+		 							<p class='tlak_contents-p me content'>${payload.content}</p>
+		 							<p class='tlak_contents-p me createDate'>${payload.createDate}</p>
+		 						</div>
+	 						</li>
+	 						`
+	 					);	
+				}else{
+					$("#tlakListBox").append(
+	 						`
+	 						<li class="tlak_contents-li">
+		 						<div class='tlak_contents_div others'>
+		 							<p class='tlak_contents-p others userName'>${payload.loginId}</p>
+		 							<p class='tlak_contents-p others content'>${payload.content}</p>
+		 							<p class='tlak_contents-p others createDate'>${payload.createDate}</p>
+		 						</div>
+	 						</li>
+	 						`
+	 					);
+				}
+				setScrollDown();
+			}
+			
+			function send(){
+				if(!$('#talkSay').val().trim()) return alert("마! 내용을 입력해라.");
+	 			ws.send(JSON.stringify({channelId: "[[${channelId}]]", userId: "[[${userInfo.id}]]", loginId: "[[${userInfo.loginId}]]", content: $('#talkSay').val()}));
+	 			$('#talkSay').val("");
+			}
+			
+			$("#talkFile").change(function(){
+				const file = $('#talkFile')[0].files[0];
+
+				var fileReader = new FileReader();
+			  
+				//onload를 실행해야 file을 변환
+			  fileReader.onload = function() {
+				  ws.send(JSON.stringify("dfsdjkfjsdl"));
+					arrayBuffer = this.result;
+					ws.send(arrayBuffer); //파일 소켓 전송
+			  }
+			  fileReader.readAsArrayBuffer(file);
+// 				console.log("==fileReader.readAsArrayBuffer(file)==", fileReader.readAsArrayBuffer(file));
+				
+// 				fileReader.onload = function() {
+// 					var param = {
+// 						type: "fileUpload",
+// 						userId: $('#talkFile').val()
+// 						roomNumber: $("#roomNumber").val(),
+// 						sessionId : $("#sessionId").val(),
+// 						msg : $("#chatting").val(),
+// 						userName : $("#userName").val()
+// 					}
+// 					ws.send(JSON.stringify(param)); //파일 보내기전 메시지를 보내서 파일을 보냄을 명시한다.
+// 					console.log("==this.result==", this.result);
+// 				  arrayBuffer = this.result;
+// 					ws.send(arrayBuffer); //파일 소켓 전송
+// 				};
+				
+// 				fileReader.readAsArrayBuffer(file);
+		
+			})
+    </script>
+    
+	</div>
+	
+</html>

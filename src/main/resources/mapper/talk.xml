@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.trgtech.trg01.repository.TalkRepository">
+	
+	<select id="findBy" resultType="TalkDto">
+	/** findBy **/
+		SELECT 
+			tbtal.id
+			,tbtal.channel_id 
+			,tbtal.user_id
+			,tbtal.content
+			,tbtal.create_date
+			,tbuse.login_id
+		FROM 
+			tb_talk tbtal
+		LEFT JOIN tb_user tbuse ON tbuse.id = tbtal.user_id 
+		WHERE
+			tbtal.channel_id = #{channelId}
+		ORDER BY tbtal.create_date
+	</select>
+	
+	<insert id="insert">
+	/** insert **/
+		INSERT INTO tb_talk
+		(
+			channel_id
+			,user_id
+			,content
+			,create_date
+		)
+		VALUES
+		(
+			#{channelId}
+			,#{userId}
+			,#{content}
+			,#{createDate}
+		)
+	</insert>
+	
+	<delete id="deleteByChannelId">
+	/** deleteByChannelId **/
+		DELETE FROM 
+			tb_talk
+		WHERE
+			channel_id = #{channelId}
+	</delete>
+	
+</mapper>

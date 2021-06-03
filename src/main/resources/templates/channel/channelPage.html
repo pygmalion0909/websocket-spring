@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html
+	lang="ko"
+	layout:decorator="layouts/mainLayout" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+	<head> 
+		<meta charset="UTF-8"> 
+	</head>
+	
+	<div layout:fragment="contents">
+		<div class="contents-frame">
+			<div class="channel">
+				<!-- channel list -->
+				<form name="frm" onsubmit="return false;">
+					<!-- hidden -->
+					<input type="hidden" id="channelId" name="id">
+					<input type="hidden" id="title" name="title">
+					<input type="hidden" id="passwd" name="passwd">
+					
+					<ul class="channel_ul">
+						<li class="channel_list" th:each="item : ${list}">
+							<div class="channel_title">
+								<p class="channel_title-name" th:text="${item.title}"></p>
+								<span class="channel_rock" th:if="${item.passwd != null}">잠금</span>
+								<p class="channel_info-text create">생성: <span class="channel_info-text create" th:text="${item.createDate}"></span></p>
+							</div>
+							<div class="channel_join">
+								<button th:if="${item.passwd != null}" th:onclick="joinRockChannel([[${item.id}]])" class="channel_btn join">참가</button>
+								<button th:if="${item.passwd == null}" th:onclick="joinChannel([[${item.id}]])" class="channel_btn join">참가</button>
+								<button th:onclick="updateChannel([[${item.id}]], [[${item.title}]], [[${item.passwd}]])" class="channel_btn update" th:if="${item.writer} == 'YES'">수정</button>
+								<button th:onclick="deleteChannel([[${item.id}]])" class="channel_btn delte" th:if="${item.writer} == 'YES'">삭제</button>
+							</div>
+						</li>
+					</ul>
+				
+				</form>
+			</div>
+		</div>
+		
+    <script type="text/javascript">
+    	function joinRockChannel(channelId){
+				var passwdResult = prompt("방 번호를 입력하세요.");
+				if(passwdResult == null) return;
+				
+				$.ajax({
+					type: "POST",
+					url : "/channel/checkPasswd",
+					data : {
+						"id" : channelId,
+						"passwd" : passwdResult
+					},
+				  success : function(result) {
+					  if(result === "NO") return alert("비밀번호가 틀렸습니다.");
+						document.frm.method = "GET"
+						document.frm.action = `/channelPage/${channelId}`;
+						document.frm.submit();  
+					}
+				});
+			}
+    	function joinChannel(channelId){
+    		document.frm.method = "GET"
+    		document.frm.action = `/channelPage/${channelId}`;
+    		document.frm.submit();
+    	}
+    	function updateChannel(channelId, title, passwd){
+    		$("#channelId").val(channelId);
+    		$("#title").val(title);
+    		$("#passwd").val(passwd);
+    		document.frm.method = "POST"
+    		document.frm.action = "/channelPage/create";
+    		document.frm.submit();
+    	}
+    	function deleteChannel(channelId){
+    		document.frm.method = "POST"
+    		document.frm.action = `/channel/delete/${channelId}`;
+    		document.frm.submit();
+    	}
+    </script>
+	</div>
+</html>

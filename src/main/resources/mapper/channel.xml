@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.trgtech.trg01.repository.ChannelRepository">
+	
+	<select id="findBy" resultType="ChannelDto">
+	/** findBy **/
+		SELECT 
+			id
+			,user_id
+			,title
+			,passwd
+			,create_date
+			,modify_date
+		FROM 
+			tb_channel
+		ORDER BY id DESC
+	</select>
+	
+	<select id="findById" resultType="ChannelDto">
+	/** findById **/
+		SELECT 
+			id
+			,title
+			,create_date
+			,modify_date
+		FROM 
+			tb_channel
+		WHERE 
+			id = #{id}
+	</select>
+	
+	<insert id="insert">
+	/** insert **/
+		INSERT INTO tb_channel
+		(
+			user_id
+			,title
+			,passwd
+			,create_date
+		)
+		VALUES
+		(
+			#{userId}
+			,#{title}
+			,#{passwd}
+			,NOW()
+		)
+	</insert>
+	
+	<update id="update">
+	/** update **/
+		UPDATE 
+			tb_channel
+		SET
+			title = #{title}
+			,passwd = #{passwd}
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="deleteByChannelId">
+	/** deleteByChannelId **/
+		DELETE FROM 
+			tb_channel
+		WHERE
+			id = #{channelId}
+	</delete>
+	
+	<select id="findByPasswd" resultType="int">
+	/** findByPasswd **/
+		SELECT 
+			COUNT(id)
+		FROM 
+			tb_channel
+		WHERE 
+			id = #{id}
+			AND passwd = #{passwd}
+	</select>
+	
+</mapper>

@@ -1,0 +1,49 @@
+@charset "EUC-KR";
+@font-face {
+  font-family: 'GmarketSansLight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+html,
+body{
+  background: #fff;
+  font-family: 'GmarketSansLight';
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+span,
+a,
+ul,
+li,
+ol,
+button,
+input
+{
+  color: black;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+button{
+  font-family: 'GmarketSansLight';
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+input{
+  background: none;
+  border: none;
+  outline: none;
+}

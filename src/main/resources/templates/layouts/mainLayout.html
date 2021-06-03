@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>TRGCHAT</title>
+		<link rel="stylesheet" type="text/css" href="/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="/css/common.css">
+		<script src="/assets/js/jquery.min.js"></script>
+	</head>
+
+	<!-- header영역 -->
+	<header th:replace="fragments/header :: headerFragment"></header>
+
+	<!-- contents영역 -->
+	<div layout:fragment="contents" class="content"></div>
+
+	<!-- footer영역 -->
+	<footer th:replace="fragments/footer :: footerFragment"></footer>
+
+</html>

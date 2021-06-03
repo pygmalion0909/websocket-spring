@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head> 
+		<meta charset="UTF-8"> 
+	</head>
+	
+	<header th:fragment="headerFragment">
+	
+		<div class="header">
+			<div class="header-frame">
+				<div class="header-logo">
+					<h1 class="header-logo-h1">
+						<a class="header-logo-link" href="/channelPage"> 
+						<span class="header-logo-span trg">TRG</span> 
+						<span class="header-logo-span chat">CHAT</span>
+						</a>
+					</h1>
+				</div>
+				<div class="header-nav">
+					<form action="/logout" method="POST">
+						<button class="header-nav-link logout">로그아웃</button>
+						<a class="header-nav-link channelCt" href="/channelPage/create">채널생성</a>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</header>
+
+</html>

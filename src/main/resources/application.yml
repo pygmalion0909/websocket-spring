@@ -1,0 +1,26 @@
+#server
+server:
+  port: 8081
+#spring
+spring:
+#database설정
+  datasource:
+    url: jdbc:mysql://220.117.162.166:3306/trg01?serverTimezone=UTC&characterEncoding=UTF-8
+    username: trg01_user
+    password: '!trg1st!'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#thymeleaf설정
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false
+#mybatis설정
+mybatis:
+  mapper-locations: mapper/**/*.xml
+  type-aliases-package: kr.co.trgtech.trg01.dto
+  configuration:
+    map-underscore-to-camel-case: true #카멜기호 맵핑 디폴트값은 false
+#log 설정
+logging:
+  level:
+    kr.co.trgtech.trg01: debug

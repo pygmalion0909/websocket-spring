@@ -1,0 +1,408 @@
+@charset "EUC-KR";
+/**
+login
+*/
+.login{
+  position: relative;
+  height: 100vh;
+}
+.login-frame{
+  max-width: 600px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.login-title{
+  text-align: center;
+}
+.login-logo_trg{
+  font-size: 95px;
+  font-weight: bold;
+}
+.login-logo_chat{
+  color: rgb(0, 167, 218);
+  font-size: 95px;
+  font-weight: bold;
+}
+.login-sub_title{
+  font-size: 25px;
+}
+.login-action{
+  border-radius: 5px;
+  text-align: center;
+  padding: 50px 0;
+  box-sizing: border-box;
+}
+.login-action_btns{
+  margin: 35px 0 ;
+}
+.login-input{
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  width: 270px;
+  height: 50px;
+  font-size: 15px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+.login-input.passwd{
+  margin-top: 10px;
+}
+.login-input:focus{
+  border: 1px solid rgb(0, 167, 218); 
+}
+.login-btn{
+  background: darkgray;
+  border-radius: 5px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 15px;
+  display: block;
+  width: 270px;
+  height: 50px;
+  margin: 0 auto;
+  letter-spacing: 5px;
+}
+.login-btn.signup{
+  margin-top: 10px;
+  line-height: 50px;
+}
+.login-btn.loginId:hover{
+  background: rgb(0, 167, 218);
+}
+.login-btn.signup:hover{
+  background: rgb(0, 167, 218);
+}
+
+/**
+signup
+*/
+.signup-frame{
+	width: 1000px;
+	margin: 0 auto;
+}
+
+/**
+header
+*/
+.header{
+  background: lightgray;
+  border-bottom: 1px solid darkgray;
+  padding: 20px 0 10px 0;
+}
+.header-frame{
+  width: 1000px;
+  margin: 0 auto;
+}
+.header-frame::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.header-logo{
+  float: left;
+}
+.header-logo-span.chat{
+  color:  rgb(0, 167, 218);
+  margin-left: -10px;
+}
+.header-nav{
+  float: right;
+  margin-top: 20px;
+}
+.header-nav-link{
+  font-size: 14px;
+}
+.header-nav-link:hover{
+  color: rgb(0, 167, 218);
+}
+.header-nav-link.channelCt:hover{
+	color: crimson;
+}
+/**
+footer
+*/
+.footer{
+  background: lightgray;
+  border-top: 1px solid darkgray;
+  padding: 20px 0 10px 0;
+}
+.footer-frame{
+	width: 1000px;
+	margin: 0 auto;
+}
+
+/**
+contents
+*/
+.contents-frame{
+	width: 1000px;
+	margin: 0 auto;
+}
+
+/**
+channel
+*/
+.channel_ul{
+	width: 600px;
+	margin: 0 auto;
+}
+.channel_list{
+	border-bottom: 1px dashed lightgrey;
+	padding: 10px 0;
+	width: 100%;
+	margin: 15px 0;
+}
+.channel_list::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.channel_title{
+	width: 85%;
+}
+.channel_title-name{
+	letter-spacing: 2px;
+	font-size: 30px;
+	font-weight: bold;'
+}
+.channel_rock{
+	color: crimson;
+	font-weight: bold;
+}
+.channel_info-text{
+	color: gray;
+	margin-top: 5px;
+	font-size: 14px;
+}
+.channel_join{
+/* 	background: blue; */
+	margin-top: 15px;
+}
+.channel_btn{
+	background: lightgray;
+	width: 100px;
+	height: 50px;
+	box-sizing: border-box;
+	text-algin: center;
+	letter-spacing: 3px;
+	font-weight: bold;
+}
+.channel_title:hover .channel_title-name{
+	color: rgb(0, 167, 218);
+	font-weight: bold;
+}
+.channel_btn:hover{
+	color: #ffffff;
+	background: rgb(0, 167, 218);
+}
+.channel_btn.update:hover{
+	color: #ffffff;
+	background: rgb(58, 190, 65);
+}
+.channel_btn.delte:hover{
+	color: #ffffff;
+	background: crimson;
+}
+
+/**
+talk
+*/
+.talk-frame{
+	background: lightblue;
+	border: 1px solid gray;
+	width: 70%;
+	margin: 15px auto;
+}
+.talk_title{
+	background: rgb(164, 209, 221);
+	padding: 20px;
+}
+.tlak-contents{
+	background: lightblue;
+	height: 700px;
+	overflow-x: hidden;
+	padding: 0 10px;
+}
+.tlak-contents::-webkit-scrollbar {
+    display: none;
+}
+.tlak_contents-ul{
+	background: lightblue;
+}
+.tlak_contents-ul:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.tlak_contents-p{
+}
+.tlak_contents-p.others{
+	display: inline-block;
+}
+.tlak_contents-p.me{
+	float: right;
+}
+.tlak_contents_div{
+	margin: 10px 0;
+}
+.tlak_contents_div.me::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.tlak_contents-p.others.userName{
+	font-size: 25px;
+	font-weight: bold;
+}
+.tlak_contents-p.content{
+	font-size: 25px;
+	padding: 10px;
+	border-radius: 10px;
+}
+.tlak_contents-p.others.content{
+	background: #fff;
+}
+.tlak_contents-p.me.content{
+	background: rgb(247, 247, 39);
+}
+.talk-talkSay{
+	background: #fff;
+	border-top: 1px solid lightgray;
+}
+.tlak_contents-p.createDate{
+	color: gray;
+	vertical-align: bottom;
+	margin: 30px 10px 0 0;
+	font-size: 9px;
+}
+.talk-talkSay_input{
+	width: 86%;
+	height: 130px;
+	border-radius: 3px;
+	padding-left: 5px;
+	vertical-align: top;
+	font-size: 17px;
+}
+.talk_subMenu{
+	background: #fff;
+	padding: 10px 0 10px 10px;
+}
+.talk_file_label{
+	display: inline-block;
+	text-algin: center;
+	line-height: 30px;
+	font-size: 18px;
+	letter-spacing: 2px;
+	width: 50px;
+	height: 30px;
+	cursor: pointer;
+}
+.talk_file_label:hover{
+	color: rgb(0, 167, 218);
+}
+.talk_subMenu_file{
+	display: none;
+}
+.talk-talkSay_btn{
+	background: rgb(247, 247, 39);
+	border-radius: 3px;
+	width: 70px;
+	height: 40px;
+	font-size: 15px;
+	font-weight: bold;
+	letter-spacing: 5px;
+	text-align: center;
+	margin-top: 15px;
+}
+.talk-nav{
+	margin-bottom: 20px;
+}
+.talk-backBtn{
+	background: lightgray;
+	display: inline-block;
+	width: 50px;
+	height: 30px;
+	line-height: 30px;
+	padding: 5px;
+	text-align: center;
+	border-radius: 3px;
+}
+.talk-talkSay_btn:hover{
+	background: rgb(0, 167, 218);
+	color: #ffffff;
+}
+.talk-backBtn:hover{
+	background: rgb(0, 167, 218);
+	color: #ffffff;
+}
+
+/**
+chCreate
+*/
+.chCreate-frame{
+	width: 80%;
+	margin: 0 auto;
+	margin: 10px 10px;
+}
+.chCreate-nav{
+	padding: 10px 0;
+}
+.chCreate-nav:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.chCreate-nav_title{
+	float: left;
+}
+.chCreate-back_btn{
+	background: lightgray;
+	border-radius: 5px;
+	width: 90px;
+	height: 40px;
+	float: right;
+	display: inline-block;
+	margin-right: 10px;
+	text-align: center;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.chCreate-back_btn:hover{
+	color: #ffff;
+}
+.chCreate-content_input{
+	border: 1px solid lightgrey;
+	display: block;
+  border-radius: 5px;
+	margin: 10px 0;
+  width: 270px;
+  height: 40px;
+  font-size: 15px;
+  padding-left: 20px;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+.chCreate-content_btn{
+	background: lightgray;
+	color: #ffff;
+	display: inline-block;
+	width: 90px;
+	height: 40px;
+	margin-right: 10px;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 5px;
+}
+.chCreate-content_btn.create{
+	background: rgb(0, 167, 218);
+}
+.chCreate-content_btn.update{
+	background: rgb(58, 190, 65);
+}

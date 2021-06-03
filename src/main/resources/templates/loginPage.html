@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>TRGCAHT</title>
+		<link rel="stylesheet" type="text/css" href="/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="/css/common.css">
+	</head>
+	<body>
+		<div class="login">
+			<div class="login-frame">
+				<div class="login-title">
+					<h1 class="login-logo">
+						<span class="login-logo_trg">TRG</span> <span
+							class="login-logo_chat">CHAT</span>
+					</h1>
+					<h3 class="login-sub_title">Welcom to CHAT</h3>
+				</div>
+				<div class="login-action">
+					<form action="/loginPro" method="post">
+						<div class="login-action_inputs">
+							<input 
+								class="login-input loginId" 
+								name="loginId" 
+								type="text"
+								placeholder="로그인ID를 입력하세요."
+							> 
+							<input
+								class="login-input passwd" 
+								name="passwd" 
+								type="password"
+								placeholder="패스워드를 입력하세요."
+							>
+						</div>
+						<div class="login-action_btns">
+							<button class="login-btn loginId">로그인</button>
+							<a href="/signupPage" class="login-btn signup">회원가입</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
